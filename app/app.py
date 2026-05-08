@@ -186,5 +186,5 @@ Dataset:
 GSE79850 (Primary Biliary Cholangitis liver transcriptomics)
 
 Author:
-Divya Mishra, PhD
+Dr. Divya Mishra, PhD
 """)
