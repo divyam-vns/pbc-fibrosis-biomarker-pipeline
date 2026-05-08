@@ -8,38 +8,92 @@ import os
 # =====================================
 # PAGE CONFIG
 # =====================================
-
 st.set_page_config(
     page_title="PBC Fibrosis Biomarker Dashboard",
     layout="wide"
 )
 
 # =====================================
-# BASE DIRECTORY
+# BASE PATHS (CRITICAL FIX)
 # =====================================
-
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.join(BASE_DIR, "..")
+
+MODEL_PATH = os.path.join(ROOT_DIR, "models", "model.pkl")
+BIOMARKER_PATH = os.path.join(ROOT_DIR, "results", "top_biomarkers.csv")
+FIG_DIR = os.path.join(ROOT_DIR, "figures")
 
 # =====================================
 # LOAD MODEL + BIOMARKERS
 # =====================================
-
-model_path = os.path.join(BASE_DIR, "..", "models", "model.pkl")
-biomarker_path = os.path.join(BASE_DIR, "..", "results", "top_biomarkers.csv")
-
-model = joblib.load(model_path)
-biomarkers = pd.read_csv(biomarker_path)
+model = joblib.load(MODEL_PATH)
+biomarkers = pd.read_csv(BIOMARKER_PATH)
 
 # =====================================
 # TITLE
 # =====================================
-
-st.title("PBC Fibrosis Biomarker Dashboard")
+st.title("🧬 PBC Fibrosis Biomarker Dashboard")
 
 st.markdown("""
-This application predicts fibrosis risk using a machine learning
-biomarker panel derived from liver transcriptomic profiling.
+This AI-powered application predicts fibrosis risk using transcriptomic biomarkers,
+combined with machine learning (XGBoost), SHAP explainability, and pathway-informed biology.
 """)
+
+# =====================================
+# SIDEBAR INPUTS
+# =====================================
+st.sidebar.header("Biomarker Inputs (Top Genes)")
+
+top_genes = biomarkers["gene"].head(20).tolist()
+
+user_input = {}
+for gene in top_genes:
+    user_input[gene] = st.sidebar.number_input(gene, value=0.0)
+
+# =====================================
+# PREDICTION
+# =====================================
+if st.sidebar.button("Predict Risk"):
+
+    X_input = np.array(list(user_input.values())).reshape(1, -1)
+
+    prediction = model.predict(X_input)[0]
+    probability = model.predict_proba(X_input)[0][1]
+
+    st.subheader("Prediction Result")
+
+    if prediction == 1:
+        st.error(f"High Fibrosis Risk (Probability: {probability:.2f})")
+    else:
+        st.success(f"Low Fibrosis Risk (Probability: {probability:.2f})")
+
+# =====================================
+# VISUALIZATION SECTION (FIXED PATHS)
+# =====================================
+st.markdown("---")
+st.header("📊 Model Interpretability & Biological Insights")
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.subheader("ROC Curve")
+    st.image(os.path.join(FIG_DIR, "roc_curve.png"), use_container_width=True)
+
+    st.subheader("PCA Visualization")
+    st.image(os.path.join(FIG_DIR, "pca_plot.png"), use_container_width=True)
+
+with col2:
+    st.subheader("SHAP Summary")
+    st.image(os.path.join(FIG_DIR, "shap_summary.png"), use_container_width=True)
+
+    st.subheader("Biomarker Importance")
+    st.image(os.path.join(FIG_DIR, "biomarker_importance.png"), use_container_width=True)
+
+# =====================================
+# FOOTER
+# =====================================
+st.markdown("---")
+st.markdown("Built for translational biomarker discovery in liver fibrosis using ML + SHAP + pathway biology.")
 
 # =====================================
 # SIDEBAR
