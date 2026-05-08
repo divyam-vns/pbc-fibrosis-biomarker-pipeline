@@ -1,4 +1,10 @@
+# PBC Fibrosis Biomarker Discovery Pipeline
 
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![ML](https://img.shields.io/badge/Machine%20Learning-XGBoost-green)
+![Explainable AI](https://img.shields.io/badge/Explainable%20AI-SHAP-orange)
+![Streamlit](https://img.shields.io/badge/Streamlit-Deployed-red)
+![Bioinformatics](https://img.shields.io/badge/Bioinformatics-Translational%20Oncology-purple)
 # PBC Fibrosis Biomarker Discovery Pipeline
 
 ## Overview
@@ -40,15 +46,9 @@ SSHAP (SHapley Additive exPlanations) was used to interpret the trained model.
 
 Key outputs:
 
-<<<<<<< HEAD
-Feature importance ranking of genes
-Direction of gene contribution (risk-increasing vs protective)
-Identification of stable biomarker candidates
-=======
 - Feature importance ranking of genes
 - Direction of gene contribution (risk-increasing vs protective)
 - Identification of stable biomarker candidates
->>>>>>> dc7f8e0e3f13cff7bff797e382d87b0a0ac4fa32
 
 This enables biological interpretability of machine learning predictions
 
@@ -60,19 +60,11 @@ Functional enrichment analysis was performed using GSEApy / Enrichr against KEGG
 
 Significant pathways included:
 
-<<<<<<< HEAD
-Complement and coagulation cascades
-Cytokine-cytokine receptor interaction
-Th17 cell differentiation
-Systemic lupus erythematosus
-Immune and inflammatory signaling pathways
-=======
 - Complement and coagulation cascades
 - Cytokine-cytokine receptor interaction
 - Th17 cell differentiation
 - Systemic lupus erythematosus
 - Immune and inflammatory signaling pathways
->>>>>>> dc7f8e0e3f13cff7bff797e382d87b0a0ac4fa32
 
 These pathways highlight immune-driven mechanisms of fibrosis progression.
 
@@ -95,17 +87,10 @@ PRKCD
 
 These genes are associated with:
 
-<<<<<<< HEAD
-immune regulation
-inflammation
-cytokine signaling
-fibrosis and tissue remodeling
-=======
 - immune regulation
 - inflammation
 - cytokine signaling
 - fibrosis and tissue remodeling
->>>>>>> dc7f8e0e3f13cff7bff797e382d87b0a0ac4fa32
 
 ---
 
@@ -113,17 +98,14 @@ fibrosis and tissue remodeling
 
 Key biological insights:
 
-<<<<<<< HEAD
-Strong immune and inflammatory activation in high-risk fibrosis samples
-Complement system and coagulation pathways significantly enriched
-T-cell differentiation pathways (Th17 axis) implicated in disease progression
-Viral response pathways also enriched, suggesting immune dysregulation
-=======
-- Strong immune and inflammatory activation in high-risk fibrosis samples.
-- Complement system and coagulation pathways significantly enriched.
-- T-cell differentiation pathways (Th17 axis) implicated in disease progression.
-- Viral response pathways also enriched, suggesting immune dysregulation.
->>>>>>> dc7f8e0e3f13cff7bff797e382d87b0a0ac4fa32
+- Identified immune and complement-associated fibrosis biomarkers in PBC.
+- SHAP analysis highlighted FCER2, ITGB4, NFKB2, RORA, and TLR3 as highly predictive genes.
+- Pathway enrichment revealed strong activation of:
+  - Complement and coagulation cascades
+  - Th17 differentiation
+  - Cytokine signaling
+  - Innate immune activation
+- XGBoost achieved strong classification performance on fibrosis-risk stratification.
 
 Overall, results support fibrosis as an immune-driven transcriptional disease.
 
@@ -131,18 +113,30 @@ Overall, results support fibrosis as an immune-driven transcriptional disease.
 
 ## Model Performance
 
-<<<<<<< HEAD
-ROC-AUC: 1.00
-Classification: High-risk vs Low-risk fibrosis
-=======
 - ROC-AUC: 1.00
 - Classification: High-risk vs Low-risk fibrosis
->>>>>>> dc7f8e0e3f13cff7bff797e382d87b0a0ac4fa32
 
 Note: Dataset size is small (n=16 samples), so results represent a proof-of-concept translational model, not a clinical-grade diagnostic system.
 
 ---
 
+## Translational Relevance
+
+This project demonstrates an end-to-end translational bioinformatics workflow integrating:
+
+- transcriptomic biomarker discovery
+- explainable machine learning
+- pathway biology
+- fibrosis risk prediction
+- deployable clinical-style dashboarding
+
+The framework can be extended to:
+- liver fibrosis
+- NASH/MASH
+- oncology biomarker discovery
+- precision medicine pipelines
+
+---
 ## Streamlit App
 
 Interactive dashboard includes:
@@ -150,6 +144,25 @@ Interactive dashboard includes:
 - Risk prediction
 - Probability output
 - Biomarker table visualization
+
+---
+
+## Limitations
+
+- Small cohort size (n=16)
+- Requires external validation in independent cohorts
+- Transcriptomic-only model without multi-omics integration
+- Exploratory research pipeline, not clinical-grade diagnostic software
+
+---
+
+## Future Directions
+
+- Multi-cohort validation
+- Survival modeling integration
+- Multi-omics biomarker fusion
+- Cloud-native deployment
+- CAP/CLIA-compatible pipeline extension
 
 ---
 
@@ -161,11 +174,7 @@ Python, pandas, numpy, scikit-learn, XGBoost, SHAP, GSEApy, Streamlit, GEOparse
 
 ## Author
 
-<<<<<<< HEAD
-Divya Mishra, PhD
-=======
 Dr. Divya Mishra, PhD
->>>>>>> dc7f8e0e3f13cff7bff797e382d87b0a0ac4fa32
 
 Bioinformatics | Translational Genomics | Biomarker Discovery
 
