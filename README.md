@@ -25,17 +25,10 @@ Differential gene expression analysis was performed using statistical testing (W
 
 A supervised classification model was trained using an XGBoost classifier to predict fibrosis risk (high vs low).
 
-<<<<<<< HEAD
-Input features: normalized gene expression matrix
-Output: binary fibrosis risk label
-Model optimization: tree-based boosting with regularization
-Evaluation: train-test split with ROC-AUC scoring
-=======
 - Input features: normalized gene expression matrix
 - Output: binary fibrosis risk label
 - Model optimization: tree-based boosting with regularization
 - Evaluation: train-test split with ROC-AUC scoring
->>>>>>> dc7f8e0e3f13cff7bff797e382d87b0a0ac4fa32
 
 The model achieved strong predictive performance, demonstrating that transcriptomic signatures can separate fibrosis risk groups
 
