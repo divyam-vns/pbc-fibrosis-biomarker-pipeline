@@ -33,7 +33,21 @@ biomarkers = pd.read_csv(BIOMARKER_PATH)
 # TITLE
 # =====================================
 st.title("🧬 PBC Fibrosis Biomarker Dashboard")
+# =====================================
+# TOP METRICS
+# =====================================
 
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.metric("Model", "XGBoost")
+
+with col2:
+    st.metric("Biomarkers", "20")
+
+with col3:
+    st.metric("ROC-AUC", "1.00")
+    
 st.markdown("""
 This AI-powered application predicts fibrosis risk using transcriptomic biomarkers,
 combined with machine learning (XGBoost), SHAP explainability, and pathway-informed biology.
@@ -72,7 +86,61 @@ if st.sidebar.button("Predict Risk"):
 # =====================================
 st.markdown("---")
 st.header("📊 Model Interpretability & Biological Insights")
+# =====================================
+# TABS
+# =====================================
 
+tab1, tab2, tab3 = st.tabs(
+    ["📈 Model Performance", "🧬 Biological Insights", "🧠 Explainable AI"]
+)
+
+# =====================================
+# TAB 1 — MODEL PERFORMANCE
+# =====================================
+
+with tab1:
+
+    st.subheader("ROC Curve")
+    st.image(
+        os.path.join(FIG_DIR, "roc_curve.png"),
+        use_container_width=True
+    )
+
+    st.subheader("PCA Visualization")
+    st.image(
+        os.path.join(FIG_DIR, "pca_plot.png"),
+        use_container_width=True
+    )
+
+# =====================================
+# TAB 2 — BIOLOGICAL INSIGHTS
+# =====================================
+
+with tab2:
+
+    st.subheader("Biomarker Importance")
+    st.image(
+        os.path.join(FIG_DIR, "biomarker_importance.png"),
+        use_container_width=True
+    )
+
+    st.subheader("Volcano Plot")
+    st.image(
+        os.path.join(FIG_DIR, "volcano_plot.png"),
+        use_container_width=True
+    )
+
+# =====================================
+# TAB 3 — EXPLAINABLE AI
+# =====================================
+
+with tab3:
+
+    st.subheader("SHAP Summary")
+    st.image(
+        os.path.join(FIG_DIR, "shap_summary.png"),
+        use_container_width=True
+    )
 col1, col2 = st.columns(2)
 
 with col1:
