@@ -32,7 +32,7 @@ biomarkers = pd.read_csv(BIOMARKER_PATH)
 # =====================================
 # TITLE
 # =====================================
-st.title("🧬 PBC Fibrosis Biomarker Dashboard")
+st.title("PBC Fibrosis Biomarker Dashboard")
 # =====================================
 # TOP METRICS
 # =====================================
@@ -85,13 +85,13 @@ if st.sidebar.button("Predict Risk"):
 # VISUALIZATION SECTION (FIXED PATHS)
 # =====================================
 st.markdown("---")
-st.header("📊 Model Interpretability & Biological Insights")
+st.header("Model Interpretability & Biological Insights")
 # =====================================
 # TABS
 # =====================================
 
 tab1, tab2, tab3 = st.tabs(
-    ["📈 Model Performance", "🧬 Biological Insights", "🧠 Explainable AI"]
+    ["Model Performance", "Biological Insights", "Explainable AI"]
 )
 
 # =====================================
@@ -240,6 +240,7 @@ st.dataframe(
 st.subheader("Project Summary")
 
 st.markdown("""
+
 ### Translational Biomarker Pipeline
 
 This project includes:
